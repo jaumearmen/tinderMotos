@@ -82,7 +82,7 @@ class _LikesPageState extends State<LikesPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          likes_json[index]['active']
+                          likes_json[index]['new']
                               ? Padding(
                                   padding:
                                       const EdgeInsets.only(left: 8, bottom: 8),
@@ -99,7 +99,7 @@ class _LikesPageState extends State<LikesPage> {
                                         width: 5,
                                       ),
                                       Text(
-                                        "Recently Active",
+                                        "New",
                                         style: TextStyle(
                                           color: white,
                                           fontSize: 14,
@@ -124,7 +124,7 @@ class _LikesPageState extends State<LikesPage> {
                                         width: 5,
                                       ),
                                       Text(
-                                        "Offline",
+                                        "Old",
                                         style: TextStyle(
                                           color: white,
                                           fontSize: 14,

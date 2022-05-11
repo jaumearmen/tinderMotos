@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:tinder_clone/data/explore_json.dart';
 import 'package:tinder_clone/data/icons.dart';
@@ -12,7 +11,7 @@ class ExplorePage extends StatefulWidget {
 
 class _ExplorePageState extends State<ExplorePage>
     with TickerProviderStateMixin {
-  CardController controller;
+  late CardController controller;
 
   List itemsTemp = [];
   int itemLength = 0;
@@ -93,26 +92,14 @@ class _ExplorePageState extends State<ExplorePage>
                                 width: size.width * 0.72,
                                 child: Column(
                                   children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          itemsTemp[index]['name'],
-                                          style: TextStyle(
-                                              color: white,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          itemsTemp[index]['age'],
-                                          style: TextStyle(
+                                    Container(
+                                      child: Text(
+                                        itemsTemp[index]['price'],
+                                        style: TextStyle(
                                             color: white,
-                                            fontSize: 22,
-                                          ),
-                                        ),
-                                      ],
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -126,16 +113,6 @@ class _ExplorePageState extends State<ExplorePage>
                                               color: green,
                                               shape: BoxShape.circle),
                                         ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Recently Active",
-                                          style: TextStyle(
-                                            color: white,
-                                            fontSize: 16,
-                                          ),
-                                        )
                                       ],
                                     ),
                                     SizedBox(
@@ -143,7 +120,7 @@ class _ExplorePageState extends State<ExplorePage>
                                     ),
                                     Row(
                                       children: List.generate(
-                                          itemsTemp[index]['likes'].length,
+                                          itemsTemp[index]['atributes'].length,
                                           (indexLikes) {
                                         if (indexLikes == 0) {
                                           return Padding(
@@ -164,7 +141,7 @@ class _ExplorePageState extends State<ExplorePage>
                                                     left: 10,
                                                     right: 10),
                                                 child: Text(
-                                                  itemsTemp[index]['likes']
+                                                  itemsTemp[index]['atributes']
                                                       [indexLikes],
                                                   style:
                                                       TextStyle(color: white),
@@ -188,7 +165,7 @@ class _ExplorePageState extends State<ExplorePage>
                                                   left: 10,
                                                   right: 10),
                                               child: Text(
-                                                itemsTemp[index]['likes']
+                                                itemsTemp[index]['atributes']
                                                     [indexLikes],
                                                 style: TextStyle(color: white),
                                               ),
@@ -257,8 +234,8 @@ class _ExplorePageState extends State<ExplorePage>
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(item_icons.length, (index) {
             return Container(
-              width: item_icons[index]['size'],
-              height: item_icons[index]['size'],
+              width: 45,
+              height: 45,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: white,
@@ -271,10 +248,7 @@ class _ExplorePageState extends State<ExplorePage>
                     ),
                   ]),
               child: Center(
-                child: SvgPicture.asset(
-                  item_icons[index]['icon'],
-                  width: item_icons[index]['icon_size'],
-                ),
+                child: Icon(item_icons[index].icon),
               ),
             );
           }),
